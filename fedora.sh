@@ -48,7 +48,6 @@ dnf install -y ${PACKAGES[@]}
 # install docker and configure rootless access
 curl https://get.docker.com | bash
 dnf install -y policycoreutils-python-utils docker-compose
-semanage permissive -a iptables_t
 dockerd-rootless-setuptool.sh install
 
 cat <<EOF >> .bashrc
