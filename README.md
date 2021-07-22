@@ -26,7 +26,9 @@ I like to have a clean desktop, so I only add the trash bin.
 ![Settings: Desktop](./img/settings_desktop.png)
 
 I also like to see some system stats in my panel, so I always install the applet: CPU Temperatur Indicator
-Also I like to add `redshift-gtk` for manual blue light filtering.
+Also I like to add QRedshift for manual blue light filtering.  
+![Settings: Applets](./img/settings_applets.png)  
+![Applets: QRedShift](./img/qredshift.png)
 
 As you probably noticed the system made some noice when logging in. I don't like those so I disable all system sounds.
 ![Settings: Sound](./img/settings_sounds.png)
