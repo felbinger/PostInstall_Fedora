@@ -1,6 +1,7 @@
 #!/bin/sh
 
 ### configuration section
+USER=nicof2000
 PACKAGES=(
   "dnf-plugins-core"
   "distribution-gpg-keys"
@@ -51,7 +52,7 @@ dnf install -y policycoreutils-python-utils docker-compose
 # TODO install as non-root user!
 #dockerd-rootless-setuptool.sh install
 
-cat <<EOF >> .bashrc
+cat <<EOF >> /home/$USER/.bashrc
 alias dc="docker-compose"
 export PATH=/usr/bin:$PATH
 export DOCKER_HOST=unix:///run/user/1000/docker.sock
@@ -75,7 +76,8 @@ wget -q https://raw.githubusercontent.com/felbinger/scripts/master/genpw.sh -O /
 chmod +x /usr/local/bin/genpw
 
 # change ps1
-echo 'PS1=\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ ' >> ~/.bashrc
+echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" >> /home/$USER/.bashrc
+echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" >> /root/.bashrc
 
 # switch desktop environment
 dnf install -y cinnamon
