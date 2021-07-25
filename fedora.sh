@@ -3,31 +3,31 @@
 ### configuration section
 USER=nicof2000
 PACKAGES=(
-  "dnf-plugins-core"
-  "distribution-gpg-keys"
-  "terminator"                                          # splitable terminal
-  "chromium"
-  "keepassxc"                                           # kdbx compatible password manager
-  "syncthing"
-  "nemo-seahorse"                                       # nemo seahorse integration (sign / encrypt)
-  #"sqlitebrowser"                                      # simple browser for sqlite databases
-  "timeshift"
-  "remmina remmina-plugins-{vnc,rdp,www,spice,secret}"  # remote access
-  #"squashfs-tools"
-  "telegram-desktop"
-  #"dislocker"                                          # decrypt windows bitlocker volumes
-  "VirtualBox"
-  "lpf-spotify-client"                                  # spotify installer
-  #"gparted"                                            # graphical partitioning tool
-  #"grub-customizer"                                    # graphical grub configuration
-  #"audacity"
-  "vlc"                                                 # videolan: vlc media player
-  "totem"                                               # gnome video player
-  "obs-studio"
-  "shotwell"                                            # image viewer
-  #"gimp"
-  "drawing"
-  "flameshot"                                           # tool to create and modify screenshots
+  dnf-plugins-core
+  distribution-gpg-keys
+  terminator                                          # splitable terminal
+  chromium
+  keepassxc                                           # kdbx compatible password manager
+  syncthing
+  nemo-seahorse                                       # nemo seahorse integration (sign / encrypt)
+  #sqlitebrowser                                      # simple browser for sqlite databases
+  timeshift
+  remmina remmina-plugins-{vnc,rdp,www,spice,secret}  # remote access
+  #squashfs-tools
+  telegram-desktop
+  #dislocker                                          # decrypt windows bitlocker volumes
+  VirtualBox
+  lpf-spotify-client                                  # spotify installer
+  #gparted                                            # graphical partitioning tool
+  #grub-customizer                                    # graphical grub configuration
+  #audacity
+  vlc                                                 # videolan: vlc media player
+  totem                                               # gnome video player
+  obs-studio
+  shotwell                                            # image viewer
+  #gimp
+  drawing
+  flameshot                                           # tool to create and modify screenshots
 )
 ### end of configuration section
 
