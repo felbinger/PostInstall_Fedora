@@ -49,8 +49,7 @@ dnf install -y ${PACKAGES[@]}
 # install docker and configure rootless access
 curl https://get.docker.com | bash
 dnf install -y policycoreutils-python-utils docker-compose
-# TODO install as non-root user!
-#dockerd-rootless-setuptool.sh install
+runuser -l $USER -c dockerd-rootless-setuptool.sh install
 
 cat <<EOF >> /home/$USER/.bashrc
 alias dc="docker-compose"
