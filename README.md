@@ -5,6 +5,20 @@ Backup your data, don't forget the following:
 * SSH configuration and keys (`~/.ssh/`)
 * Remmina configurations (`~/.local/share/remmina`)
 
+## Installation
+![Language Selection](./img/install_language.png)  
+![Summary](./img/install_summary.png)  
+![Keyboard Layout](./img/install_keyboard.png)  
+
+You can configure the storage automaticly, or using the "Advanced Custom" mode, using the blivet gui.  
+If you encrypt your data, make sure to check whether the correct keyboard layout has been selected before setting the passphrase for the disk encryption.  
+![Disk Setup](./img/install_disks.png)  
+
+You can start the installation now:  
+![Summary](./img/install_summary_finished.png)  
+
+Finally you can restart your computer.
+
 ## Post Install
 Adjust the configuration section in the [`fedora.sh`](./fedora.sh) script and execute it. Afterwards logout and login again with Cinnamon as desktion environment (right bottom cornor -> cog icon). 
 
