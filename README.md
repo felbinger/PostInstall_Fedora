@@ -51,6 +51,8 @@ After I added my printers, configured my preferred and startup applications.
 
 ![Settings: Preferred Applications](./img/settings_preferred_applications.png)
 
+![Xed Preferences](./img/xed_preferences.png)
+
 ## TODO
 - SELinux Cinnamon adjustments
   ```shell
