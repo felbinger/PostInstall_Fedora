@@ -36,7 +36,7 @@ if [[ $(/usr/bin/id -u) != "0" ]]; then
   exit 1
 fi
 
-dnf update -y
+dnf update -y --refresh
 
 # add fusion repositories
 dnf install -y \
