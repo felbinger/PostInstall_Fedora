@@ -1,7 +1,6 @@
 #!/bin/sh
 
 ### configuration section
-USER=nicof2000
 PACKAGES=(
   dnf-plugins-core
   distribution-gpg-keys
@@ -31,53 +30,48 @@ PACKAGES=(
 )
 ### end of configuration section
 
-if [[ $(/usr/bin/id -u) != "0" ]]; then
-  echo "Please run the script as root!"
-  exit 1
-fi
-
-dnf update -y --refresh
+sudo dnf update -y --refresh
 
 # add fusion repositories
-dnf install -y \
+sudo dnf install -y \
   https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
   https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 # install additional software
-dnf install -y ${PACKAGES[@]}
+sudo dnf install -y ${PACKAGES[@]}
 
 # install docker and configure rootless access
-curl https://get.docker.com | bash
-dnf install -y policycoreutils-python-utils docker-compose
-runuser -l $USER -c dockerd-rootless-setuptool.sh install
+#curl https://get.docker.com | sudo bash
+#sudo dnf install -y policycoreutils-python-utils docker-compose
+#dockerd-rootless-setuptool.sh install
 
-cat <<EOF >> /home/$USER/.bashrc
+cat <<EOF >> /home/${USER}/.bashrc
 alias dc="docker-compose"
 export PATH=/usr/bin:$PATH
-export DOCKER_HOST=unix:///run/user/1000/docker.sock
+#export DOCKER_HOST=unix:///run/user/1000/docker.sock
 EOF
 
 # install brave
-dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
-rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-dnf install -y brave-browser
+#sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
+#sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+#sudo dnf install -y brave-browser
 
 # install element desktop
-dnf copr enable -y taw/element
-dnf install -y element
+sudo dnf copr enable -y taw/element
+sudo dnf install -y element
 
 # install signal desktop
-dnf copr enable -y luminoso/Signal-Desktop
-dnf install -y signal-desktop
+sudo dnf copr enable -y luminoso/Signal-Desktop
+sudo dnf install -y signal-desktop
 
 # add password generator script
-wget -q https://raw.githubusercontent.com/felbinger/scripts/master/genpw.sh -O /usr/local/bin/genpw
-chmod +x /usr/local/bin/genpw
+sudo wget -q https://raw.githubusercontent.com/felbinger/scripts/master/genpw.sh -O /usr/local/bin/genpw
+sudo chmod +x /usr/local/bin/genpw
 
 # change ps1
-echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" >> /home/$USER/.bashrc
-echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" >> /root/.bashrc
+echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" | tee -a /home/${USER}/.bashrc
+echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" | sudo tee -a /root/.bashrc
 
 # switch desktop environment
-dnf install -y cinnamon
-dnf swap -y @gnome-desktop @cinnamon-desktop
+sudo dnf install -y cinnamon
+sudo dnf swap -y @gnome-desktop @cinnamon-desktop
