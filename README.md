@@ -1,4 +1,4 @@
-# Fedora 34 Installation Checklist
+# Fedora 35 Installation Checklist
 
 ## Pre Install
 Backup your data, don't forget the following:
