@@ -69,8 +69,7 @@ sudo wget -q https://raw.githubusercontent.com/felbinger/scripts/master/genpw.sh
 sudo chmod +x /usr/local/bin/genpw
 
 # change ps1
-echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" | tee -a /home/${USER}/.bashrc
-echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" | sudo tee -a /root/.bashrc
+echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" | sudo tee -a /{root,home/${USER}}/.bashrc 
 
 # switch desktop environment
 sudo dnf install -y cinnamon
