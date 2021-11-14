@@ -27,6 +27,8 @@ PACKAGES=(
   #gimp
   drawing
   flameshot                                           # tool to create and modify screenshots
+  binwalk                                             # tool to analyse binary files for embeded files and executable code
+  radare2                                             # reverse engeneering tool (required for cutter)
 )
 ### end of configuration section
 
@@ -70,6 +72,9 @@ sudo chmod +x /usr/local/bin/genpw
 
 # change ps1
 echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" | sudo tee -a /{root,home/${USER}}/.bashrc 
+
+# cutter (reverse engeneering)
+bash scripts/cutter.sh
 
 # switch desktop environment
 sudo dnf install -y cinnamon
