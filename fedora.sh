@@ -29,6 +29,9 @@ PACKAGES=(
   flameshot                                           # tool to create and modify screenshots
   binwalk                                             # tool to analyse binary files for embeded files and executable code
   radare2                                             # reverse engeneering tool (required for cutter)
+  wfuzz                                               # fuzzing tool
+  gobuster                                            # directory and vhost enumeration
+  wireshark
 )
 ### end of configuration section
 
