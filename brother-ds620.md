@@ -8,7 +8,7 @@ Checkout [joakim.uddholm.com/posts/setting-up-brother-ds620-on-linux](https://jo
 
 3. Add udev rules:
    ```
-   cat <<_EOF /etc/udev/rules.d/50-Brother_DSScanner.rules file.
+   cat <<_EOF > /etc/udev/rules.d/50-Brother_DSScanner.rules file.
    KERNEL=="sg[0-9]*", ATTRS{type}=="0", ATTRS{vendor}=="Brother", ATTRS{model}=="DS-620", MODE="0666", GROUP="users"
    KERNEL=="sg[0-9]*", ATTRS{type}=="0", ATTRS{vendor}=="Brother", ATTRS{model}=="DS-720D", MODE="0666", GROUP="users"
    KERNEL=="sg[0-9]*", ATTRS{type}=="0", ATTRS{vendor}=="Brother", ATTRS{model}=="DS-820W", MODE="0666", GROUP="users"
