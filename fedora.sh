@@ -13,10 +13,10 @@ PACKAGES=(
   timeshift
   remmina remmina-plugins-{vnc,rdp,www,spice,secret}  # remote access
   #squashfs-tools
-  telegram-desktop
+  #telegram-desktop
   #dislocker                                          # decrypt windows bitlocker volumes
   VirtualBox
-  lpf-spotify-client                                  # spotify installer
+  lpf-spotify-client                                  # spotify installer - I suggest you comment this out and use the flatpak build from spotify
   #gparted                                            # graphical partitioning tool
   #grub-customizer                                    # graphical grub configuration
   #audacity
@@ -27,11 +27,11 @@ PACKAGES=(
   #gimp
   drawing
   flameshot                                           # tool to create and modify screenshots
-  binwalk                                             # tool to analyse binary files for embeded files and executable code
-  radare2                                             # reverse engeneering tool (required for cutter)
-  wfuzz                                               # fuzzing tool
-  gobuster                                            # directory and vhost enumeration
-  wireshark
+  #binwalk                                             # tool to analyse binary files for embeded files and executable code
+  #radare2                                             # reverse engeneering tool (required for cutter)
+  #wfuzz                                               # fuzzing tool
+  #gobuster                                            # directory and vhost enumeration
+  #wireshark
 )
 ### end of configuration section
 
@@ -57,9 +57,9 @@ export PATH=/usr/bin:$PATH
 EOF
 
 # install brave
-#sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
-#sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-#sudo dnf install -y brave-browser
+sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
+sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+sudo dnf install -y brave-browser
 
 # install element desktop
 sudo dnf copr enable -y taw/element
@@ -77,7 +77,7 @@ sudo chmod +x /usr/local/bin/genpw
 echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" | sudo tee -a /{root,home/${USER}}/.bashrc 
 
 # cutter (reverse engeneering)
-bash scripts/cutter.sh
+#bash scripts/cutter.sh
 
 # switch desktop environment
 sudo dnf install -y cinnamon
