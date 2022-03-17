@@ -1,27 +1,26 @@
 #!/bin/sh
 
 ### configuration section
-PACKAGES=(
+DNF_PACKAGES=(
   dnf-plugins-core
   distribution-gpg-keys
   terminator                                          # splitable terminal
-  chromium
+  #chromium
   keepassxc                                           # kdbx compatible password manager
   syncthing
   nemo-seahorse                                       # nemo seahorse integration (sign / encrypt)
   #sqlitebrowser                                      # simple browser for sqlite databases
   timeshift
-  remmina remmina-plugins-{vnc,rdp,www,spice,secret}  # remote access
+  #remmina remmina-plugins-{vnc,rdp,www,spice,secret}  # remote access
   #squashfs-tools
   #telegram-desktop
   #dislocker                                          # decrypt windows bitlocker volumes
   VirtualBox
-  lpf-spotify-client                                  # spotify installer - I suggest you comment this out and use the flatpak build from spotify
   #gparted                                            # graphical partitioning tool
   #grub-customizer                                    # graphical grub configuration
   #audacity
   vlc                                                 # videolan: vlc media player
-  totem                                               # gnome video player
+  #totem                                               # gnome video player
   obs-studio
   shotwell                                            # image viewer
   #gimp
@@ -33,6 +32,12 @@ PACKAGES=(
   #gobuster                                            # directory and vhost enumeration
   #wireshark
 )
+FLATPAK_PACKAGES=(
+  im.riot.Riot                                         # Element Client
+  com.jgraph.drawio.desktop                            # draw.io
+  com.spotify.Client                                   # Spotify
+)
+
 ### end of configuration section
 
 sudo dnf update -y --refresh
@@ -42,32 +47,33 @@ sudo dnf install -y \
   https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
   https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
+# add flathub
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub
+
 # install additional software
-sudo dnf install -y ${PACKAGES[@]}
+sudo dnf install -y ${DNF_PACKAGES[@]}
+flatpak install ${FLATPAK_PACKAGES[@]}
 
 # install docker and configure rootless access
 #curl https://get.docker.com | sudo bash
 #sudo dnf install -y policycoreutils-python-utils docker-compose
 #dockerd-rootless-setuptool.sh install
 
-cat <<EOF >> /home/${USER}/.bashrc
-alias dc="docker-compose"
-export PATH=/usr/bin:$PATH
+#cat <<EOF >> /home/${USER}/.bashrc
+#alias dc="docker-compose"
+#export PATH=/usr/bin:$PATH
 #export DOCKER_HOST=unix:///run/user/1000/docker.sock
-EOF
+#EOF
 
 # install brave
 sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
 sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 sudo dnf install -y brave-browser
 
-# install element desktop
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak install flathub im.riot.Riot
-
 # install signal desktop
-sudo dnf copr enable -y luminoso/Signal-Desktop
-sudo dnf install -y signal-desktop
+#sudo dnf copr enable -y luminoso/Signal-Desktop
+#sudo dnf install -y signal-desktop
 
 # add password generator script
 sudo wget -q https://raw.githubusercontent.com/felbinger/scripts/master/genpw.sh -O /usr/local/bin/genpw
