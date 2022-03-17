@@ -49,11 +49,16 @@ sudo dnf install -y \
 
 # add flathub
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak install flathub
+flatpak install -y flathub
 
 # install additional software
 sudo dnf install -y ${DNF_PACKAGES[@]}
-flatpak install ${FLATPAK_PACKAGES[@]}
+flatpak install -y ${FLATPAK_PACKAGES[@]}
+
+# install brave
+sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
+sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+sudo dnf install -y brave-browser
 
 # install docker and configure rootless access
 #curl https://get.docker.com | sudo bash
@@ -65,11 +70,6 @@ flatpak install ${FLATPAK_PACKAGES[@]}
 #export PATH=/usr/bin:$PATH
 #export DOCKER_HOST=unix:///run/user/1000/docker.sock
 #EOF
-
-# install brave
-sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
-sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-sudo dnf install -y brave-browser
 
 # install signal desktop
 #sudo dnf copr enable -y luminoso/Signal-Desktop
