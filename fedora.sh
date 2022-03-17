@@ -62,8 +62,8 @@ sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 sudo dnf install -y brave-browser
 
 # install element desktop
-sudo dnf copr enable -y taw/element
-sudo dnf install -y element
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub im.riot.Riot
 
 # install signal desktop
 sudo dnf copr enable -y luminoso/Signal-Desktop
