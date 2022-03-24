@@ -4,28 +4,28 @@
 DNF_PACKAGES=(
   dnf-plugins-core
   distribution-gpg-keys
-  terminator                                          # splitable terminal
+  terminator                                           # splitable terminal
   #chromium
-  keepassxc                                           # kdbx compatible password manager
+  keepassxc                                            # kdbx compatible password manager
   syncthing
-  nemo-seahorse                                       # nemo seahorse integration (sign / encrypt)
-  #sqlitebrowser                                      # simple browser for sqlite databases
+  nemo-seahorse                                        # nemo seahorse integration (sign / encrypt)
+  #sqlitebrowser                                       # simple browser for sqlite databases
   timeshift
   #remmina remmina-plugins-{vnc,rdp,www,spice,secret}  # remote access
   #squashfs-tools
   #telegram-desktop
-  #dislocker                                          # decrypt windows bitlocker volumes
+  #dislocker                                           # decrypt windows bitlocker volumes
   VirtualBox
-  #gparted                                            # graphical partitioning tool
-  #grub-customizer                                    # graphical grub configuration
+  #gparted                                             # graphical partitioning tool
+  #grub-customizer                                     # graphical grub configuration
   #audacity
-  vlc                                                 # videolan: vlc media player
+  vlc                                                  # videolan: vlc media player
   #totem                                               # gnome video player
   obs-studio
-  shotwell                                            # image viewer
+  shotwell                                             # image viewer
   #gimp
   drawing
-  flameshot                                           # tool to create and modify screenshots
+  flameshot                                            # tool to create and modify screenshots
   #binwalk                                             # tool to analyse binary files for embeded files and executable code
   #radare2                                             # reverse engeneering tool (required for cutter)
   #wfuzz                                               # fuzzing tool
@@ -36,6 +36,7 @@ FLATPAK_PACKAGES=(
   im.riot.Riot                                         # Element Client
   com.jgraph.drawio.desktop                            # draw.io
   com.spotify.Client                                   # Spotify
+  com.bitwarden.desktop
 )
 
 ### end of configuration section
