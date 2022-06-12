@@ -35,8 +35,11 @@ DNF_PACKAGES=(
 FLATPAK_PACKAGES=(
   im.riot.Riot                                         # Element Client
   com.jgraph.drawio.desktop                            # draw.io
-  com.spotify.Client                                   # Spotify
+  com.spotify.Client
   com.bitwarden.desktop
+  com.brave.Browser
+  org.signal.Signal
+  com.anydesk.Anydesk
 )
 
 ### end of configuration section
@@ -55,26 +58,6 @@ flatpak install -y flathub
 # install additional software
 sudo dnf install -y ${DNF_PACKAGES[@]}
 flatpak install -y ${FLATPAK_PACKAGES[@]}
-
-# install brave
-sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
-sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-sudo dnf install -y brave-browser
-
-# install docker and configure rootless access
-#curl https://get.docker.com | sudo bash
-#sudo dnf install -y policycoreutils-python-utils docker-compose
-#dockerd-rootless-setuptool.sh install
-
-#cat <<EOF >> /home/${USER}/.bashrc
-#alias dc="docker-compose"
-#export PATH=/usr/bin:$PATH
-#export DOCKER_HOST=unix:///run/user/1000/docker.sock
-#EOF
-
-# install signal desktop
-#sudo dnf copr enable -y luminoso/Signal-Desktop
-#sudo dnf install -y signal-desktop
 
 # add password generator script
 sudo wget -q https://raw.githubusercontent.com/felbinger/scripts/master/genpw.sh -O /usr/local/bin/genpw
