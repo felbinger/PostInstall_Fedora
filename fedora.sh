@@ -31,15 +31,25 @@ DNF_PACKAGES=(
   #wfuzz                                               # fuzzing tool
   #gobuster                                            # directory and vhost enumeration
   #wireshark
+  snapd
 )
 FLATPAK_PACKAGES=(
-  im.riot.Riot                                         # Element Client
-  com.jgraph.drawio.desktop                            # draw.io
-  com.spotify.Client
-  com.bitwarden.desktop
-  com.brave.Browser
+  #im.riot.Riot                                         # Element Client
+  #com.jgraph.drawio.desktop                            # draw.io
+  #com.spotify.Client
+  #com.bitwarden.desktop
+  #com.brave.Browser
   org.signal.Signal
   com.anydesk.Anydesk
+  #org.ferdium.Ferdium
+)
+SNAP_PACKAGES=(
+  element-desktop
+  drawio
+  spotify
+  brave
+  bitwarden
+  ferdium
 )
 
 ### end of configuration section
@@ -58,6 +68,8 @@ flatpak install -y flathub
 # install additional software
 sudo dnf install -y ${DNF_PACKAGES[@]}
 flatpak install -y ${FLATPAK_PACKAGES[@]}
+
+snap install ${SNAP_PACKAGES}
 
 # add password generator script
 sudo wget -q https://raw.githubusercontent.com/felbinger/scripts/master/genpw.sh -O /usr/local/bin/genpw
