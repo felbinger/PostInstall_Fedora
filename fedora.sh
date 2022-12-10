@@ -8,10 +8,10 @@ DNF_PACKAGES=(
   #chromium
   keepassxc                                            # kdbx compatible password manager
   syncthing
-  #nemo-seahorse                                        # nemo seahorse integration (sign / encrypt)
+  #nemo-seahorse                                       # nemo seahorse integration (sign / encrypt)
   #sqlitebrowser                                       # simple browser for sqlite databases
   timeshift
-  remmina remmina-plugins-{vnc,rdp,www,spice,secret}  # remote access
+  remmina remmina-plugins-{vnc,rdp,www,spice,secret}   # remote access
   #squashfs-tools
   #telegram-desktop
   #dislocker                                           # decrypt windows bitlocker volumes
@@ -19,17 +19,17 @@ DNF_PACKAGES=(
   #gparted                                             # graphical partitioning tool
   #grub-customizer                                     # graphical grub configuration
   #audacity
-  #vlc                                                  # videolan: vlc media player
+  #vlc                                                 # videolan: vlc media player
   #totem                                               # gnome video player
   #obs-studio
-  #shotwell                                             # image viewer
+  #shotwell                                            # image viewer
   gimp
   #drawing
   flameshot                                            # tool to create and modify screenshots
-  binwalk                                             # tool to analyse binary files for embeded files and executable code
+  binwalk                                              # tool to analyse binary files for embeded files and executable code
   #radare2                                             # reverse engeneering tool (required for cutter)
   #wfuzz                                               # fuzzing tool
-  gobuster                                            # directory and vhost enumeration
+  gobuster                                             # directory and vhost enumeration
   wireshark
   nmap
   snapd
