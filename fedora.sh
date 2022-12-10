@@ -117,6 +117,10 @@ echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" |
 # cutter (reverse engeneering)
 #bash scripts/cutter.sh
 
+# install drawio (won't update automaticly!)
+curl -s https://api.github.com/repos/jgraph/drawio-desktop/releases/latest | grep browser_download_url | grep '\.rpm' | cut -d '"' -f 4 | wget -i -
+sudo yum install ./drawio-x86_64-*.rpm
+
 # switch desktop environment
 #sudo dnf install -y cinnamon
 #sudo dnf swap -y @gnome-desktop @cinnamon-desktop
