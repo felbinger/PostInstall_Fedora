@@ -32,7 +32,6 @@ DNF_PACKAGES=(
   gobuster                                             # directory and vhost enumeration
   wireshark
   nmap
-  snapd
   code
   anydesk
   chromium
@@ -50,12 +49,12 @@ FLATPAK_PACKAGES=(
   #com.bitwarden.desktop
   #com.brave.Browser
   org.signal.Signal
-  com.anydesk.Anydesk
+  #com.anydesk.Anydesk
   #org.ferdium.Ferdium
 )
 SNAP_PACKAGES=(
   element-desktop
-  drawio
+  #drawio
   spotify
   brave
   bitwarden
@@ -71,11 +70,8 @@ sudo dnf install -y \
   https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
   https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
-# add flathub
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak install -y flathub
-
-# add microsoft repo for vscode
+# add microsoft repo for vscode if dnf package code should be installed 
+[[ ${DNF_PACKAGES[@]} =~ "code" ]] && (
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 cat <<_EOF | sudo tee /etc/yum.repos.d/vscode.repo
 [code]
@@ -85,8 +81,10 @@ enabled=1
 gpgcheck=1
 gpgkey=https://packages.microsoft.com/keys/microsoft.asc
 _EOF
+)
 
-# add repo for anydesk
+# add repo for anydesk if it should be installed
+[[ ${DNF_PACKAGES[@]} =~ "anydesk" ]] && (
 sudo rpm --import https://keys.anydesk.com/repos/RPM-GPG-KEY
 cat << "_EOF" | sudo tee /etc/yum.repos.d/anydesk.repo
 [anydesk]
@@ -96,16 +94,27 @@ gpgcheck=1
 repo_gpgcheck=1
 gpgkey=https://keys.anydesk.com/repos/RPM-GPG-KEY
 _EOF
+)
 
 # install additional software
 sudo dnf install -y ${DNF_PACKAGES[@]}
+
+# install flatpak and flatpak packages if configured
+[[ ${#SNAP_PACKAGES[@]} -ne 0 ]] && (
+sudo dnf install -y flatpak
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install -y flathub
 flatpak install -y ${FLATPAK_PACKAGES[@]}
+)
 
-if which ansible &> /dev/null; then
-  ansible-galaxy collection install community.general vyos.vyos
-fi
+# install ansible collections, if ansible is installed
+which ansible &> /dev/null && ansible-galaxy collection install community.general vyos.vyos
 
-snap install ${SNAP_PACKAGES}
+# install snap and snap packages if configured
+[[ ${#SNAP_PACKAGES[@]} -ne 0 ]] && (
+sudo dnf install -y snapd
+snap install ${SNAP_PACKAGES[@]}
+)
 
 # add password generator script
 sudo wget -q https://raw.githubusercontent.com/felbinger/scripts/master/genpw.sh -O /usr/local/bin/genpw
@@ -128,4 +137,4 @@ sudo yum install ./drawio-x86_64-*.rpm
 # add your user to some groups for applications
 #usermod -aG vboxusers,dialout user
 
-# install jetbrains-toolbox
+# install jetbrains-toolbox (idea, pycharm, clion)
