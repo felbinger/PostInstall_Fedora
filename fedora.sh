@@ -91,7 +91,7 @@ sudo rpm --import https://keys.anydesk.com/repos/RPM-GPG-KEY
 cat << "_EOF" | sudo tee /etc/yum.repos.d/anydesk.repo
 [anydesk]
 name=AnyDesk RHEL - stable
-baseurl=http://rpm.anydesk.com/rhel/$releasever/$basearch/
+baseurl=http://rpm.anydesk.com/rhel/x86_64/
 gpgcheck=1
 repo_gpgcheck=1
 gpgkey=https://keys.anydesk.com/repos/RPM-GPG-KEY
