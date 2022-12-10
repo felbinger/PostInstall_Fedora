@@ -88,14 +88,14 @@ _EOF
 
 # add repo for anydesk
 sudo rpm --import https://keys.anydesk.com/repos/RPM-GPG-KEY
-cat > /etc/yum.repos.d/AnyDesk-RHEL.repo << "EOF"
+cat << "_EOF" | sudo tee /etc/yum.repos.d/anydesk.repo
 [anydesk]
 name=AnyDesk RHEL - stable
 baseurl=http://rpm.anydesk.com/rhel/$releasever/$basearch/
 gpgcheck=1
 repo_gpgcheck=1
 gpgkey=https://keys.anydesk.com/repos/RPM-GPG-KEY
-EOF
+_EOF
 
 # install additional software
 sudo dnf install -y ${DNF_PACKAGES[@]}
