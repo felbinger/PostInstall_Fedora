@@ -46,22 +46,22 @@ DNF_PACKAGES=(
   gnome-extensions-app
 )
 FLATPAK_PACKAGES=(
-  #im.riot.Riot                                         # Element Client
-  #com.jgraph.drawio.desktop                            # draw.io
-  #com.spotify.Client
+  im.riot.Riot                                         # Element Client
+  #com.jgraph.drawio.desktop                           # draw.io
+  com.spotify.Client
   #com.bitwarden.desktop
   #com.brave.Browser
-  org.signal.Signal
+  #org.signal.Signal
   #com.anydesk.Anydesk
   #org.ferdium.Ferdium
 )
 SNAP_PACKAGES=(
-  element-desktop
+  #element-desktop
   #drawio
-  spotify
-  brave
-  bitwarden
-  ferdium
+  #spotify
+  #brave
+  #bitwarden
+  #ferdium
 )
 
 ### end of configuration section
