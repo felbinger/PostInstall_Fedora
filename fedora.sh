@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ### configuration section
 DNF_PACKAGES=(
