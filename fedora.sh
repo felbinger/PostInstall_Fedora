@@ -4,11 +4,11 @@
 DNF_PACKAGES=(
   dnf-plugins-core
   distribution-gpg-keys
+  
   terminator                                           # splitable terminal
-  #chromium
+  chromium
   keepassxc                                            # kdbx compatible password manager
   syncthing
-  #nemo-seahorse                                       # nemo seahorse integration (sign / encrypt)
   #sqlitebrowser                                       # simple browser for sqlite databases
   timeshift
   remmina remmina-plugins-{vnc,rdp,www,spice,secret}   # remote access
@@ -29,18 +29,21 @@ DNF_PACKAGES=(
   binwalk                                              # tool to analyse binary files for embeded files and executable code
   #radare2                                             # reverse engeneering tool (required for cutter)
   #wfuzz                                               # fuzzing tool
+  nmap
   gobuster                                             # directory and vhost enumeration
   wireshark
-  nmap
-  code
-  anydesk
-  chromium
-  gnome-tweaks
-  gnome-extensions-app
   texlive-scheme-full
   texstudio
   kubernetes-client
   ansible
+  
+  code                                                 # visual studio code using microsoft repo
+  anydesk                                              # anydesk using anydesk (rhel) repo
+  signal-desktop                                       # signal desktop from dnf copr
+
+  #nemo-seahorse                                       # nemo seahorse integration (sign / encrypt)
+  gnome-tweaks
+  gnome-extensions-app
 )
 FLATPAK_PACKAGES=(
   #im.riot.Riot                                         # Element Client
@@ -72,8 +75,8 @@ sudo dnf install -y \
 
 # add microsoft repo for vscode if dnf package code should be installed 
 [[ ${DNF_PACKAGES[@]} =~ "code" ]] && (
-sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-cat <<_EOF | sudo tee /etc/yum.repos.d/vscode.repo
+  sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+  cat <<_EOF | sudo tee /etc/yum.repos.d/vscode.repo
 [code]
 name=Visual Studio Code
 baseurl=https://packages.microsoft.com/yumrepos/vscode
@@ -85,8 +88,8 @@ _EOF
 
 # add repo for anydesk if it should be installed
 [[ ${DNF_PACKAGES[@]} =~ "anydesk" ]] && (
-sudo rpm --import https://keys.anydesk.com/repos/RPM-GPG-KEY
-cat << "_EOF" | sudo tee /etc/yum.repos.d/anydesk.repo
+  sudo rpm --import https://keys.anydesk.com/repos/RPM-GPG-KEY
+  cat << "_EOF" | sudo tee /etc/yum.repos.d/anydesk.repo
 [anydesk]
 name=AnyDesk RHEL - stable
 baseurl=http://rpm.anydesk.com/rhel/x86_64/
@@ -96,15 +99,20 @@ gpgkey=https://keys.anydesk.com/repos/RPM-GPG-KEY
 _EOF
 )
 
+[[ ${DNF_PACKAGES[@]} =~ "signal-desktop" ]] && (
+  sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/network:im:signal/Fedora_37/network:im:signal.repo
+  sudo dnf install signal-desktop
+)
+
 # install additional software
 sudo dnf install -y ${DNF_PACKAGES[@]}
 
 # install flatpak and flatpak packages if configured
 [[ ${#SNAP_PACKAGES[@]} -ne 0 ]] && (
-sudo dnf install -y flatpak
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak install -y flathub
-flatpak install -y ${FLATPAK_PACKAGES[@]}
+  sudo dnf install -y flatpak
+  flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  flatpak install -y flathub
+  flatpak install -y ${FLATPAK_PACKAGES[@]}
 )
 
 # install ansible collections, if ansible is installed
@@ -112,16 +120,9 @@ which ansible &> /dev/null && ansible-galaxy collection install community.genera
 
 # install snap and snap packages if configured
 [[ ${#SNAP_PACKAGES[@]} -ne 0 ]] && (
-sudo dnf install -y snapd
-snap install ${SNAP_PACKAGES[@]}
+  sudo dnf install -y snapd
+  snap install ${SNAP_PACKAGES[@]}
 )
-
-# add password generator script
-sudo wget -q https://raw.githubusercontent.com/felbinger/scripts/master/genpw.sh -O /usr/local/bin/genpw
-sudo chmod +x /usr/local/bin/genpw
-
-# change ps1
-echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" | sudo tee -a /{root,home/${USER}}/.bashrc 
 
 # cutter (reverse engeneering)
 #bash scripts/cutter.sh
@@ -133,6 +134,13 @@ sudo yum install ./drawio-x86_64-*.rpm
 # switch desktop environment
 #sudo dnf install -y cinnamon
 #sudo dnf swap -y @gnome-desktop @cinnamon-desktop
+
+# add password generator script
+sudo wget -q https://raw.githubusercontent.com/felbinger/scripts/master/genpw.sh -O /usr/local/bin/genpw
+sudo chmod +x /usr/local/bin/genpw
+
+# change ps1
+echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" | sudo tee -a /{root,home/${USER}}/.bashrc 
 
 # add your user to some groups for applications
 #usermod -aG vboxusers,dialout user
