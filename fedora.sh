@@ -38,8 +38,9 @@ DNF_PACKAGES=(
   ansible
   
   code                                                 # visual studio code using microsoft repo
-  anydesk                                              # anydesk using anydesk (rhel) repo
-  signal-desktop                                       # signal desktop from dnf copr
+  anydesk                                              # using anydesk (rhel) repo
+  teamviewer                                           # using teamviewer repo
+  signal-desktop                                       # from dnf copr
 
   #nemo-seahorse                                       # nemo seahorse integration (sign / encrypt)
   gnome-tweaks
@@ -96,6 +97,20 @@ baseurl=http://rpm.anydesk.com/rhel/x86_64/
 gpgcheck=1
 repo_gpgcheck=1
 gpgkey=https://keys.anydesk.com/repos/RPM-GPG-KEY
+_EOF
+)
+
+[[ ${DNF_PACKAGES[@]} =~ "teamviewer" ]] && (
+  sudo rpm --import https://linux.teamviewer.com/pubkey/currentkey.asc
+  cat << "_EOF" | sudo tee /etc/yum.repos.d/teamviewer.repo
+[teamviewer]
+name=TeamViewer - $basearch
+baseurl=https://linux.teamviewer.com/yum/stable/main/binary-$basearch/
+gpgkey=https://linux.teamviewer.com/pubkey/currentkey.asc
+gpgcheck=1
+repo_gpgcheck=1
+enabled=1
+type=rpm-md
 _EOF
 )
 
