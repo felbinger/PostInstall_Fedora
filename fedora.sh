@@ -278,3 +278,8 @@ sudo cp /usr/share/plymouth/themes/spinner/watermark.png{,.bak}
 sudo convert -size 128x32 xc:transparent /usr/share/plymouth/themes/spinner/watermark.png
 sudo cp /boot/initramfs-$(uname -r).img{,.bak}
 sudo dracut -f /boot/initramfs-$(uname -r).img
+
+
+### CLEANUP
+rm -r /tmp/repos.d
+rm -r /tmp/jetbrains-toolbox*
