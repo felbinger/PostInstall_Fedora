@@ -296,3 +296,4 @@ sudo dracut -f /boot/initramfs-$(uname -r).img
 ### CLEANUP
 rm -r /tmp/repos.d
 rm -r /tmp/jetbrains-toolbox*
+sudo dnf remove -y nautilus gnome-text-editor
