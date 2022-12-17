@@ -40,6 +40,7 @@ DNF_PACKAGES=(
   code                                                 # visual studio code using microsoft repo
   anydesk                                              # using anydesk (rhel) repo
   teamviewer                                           # using teamviewer repo
+  brave-browser                                        # using brave repo
   signal-desktop                                       # from dnf copr
 
   #nemo-seahorse                                       # nemo seahorse integration (sign / encrypt)
@@ -112,6 +113,12 @@ repo_gpgcheck=1
 enabled=1
 type=rpm-md
 _EOF
+)
+
+[[ ${DNF_PACKAGES[@]} =~ "brave-browser" ]] && (
+  sudo dnf install -y dnf-plugins-core
+  sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
+  sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 )
 
 [[ ${DNF_PACKAGES[@]} =~ "signal-desktop" ]] && (
