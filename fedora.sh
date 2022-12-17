@@ -265,6 +265,18 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 # Super + E -> Launchers/Home folder
 gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Super>e']"
 
+# configure autostart
+paths=(
+  "/usr/share/applications/syncthing-start.desktop" 
+  "/usr/share/applications/signal-desktop.desktop"
+  "/var/lib/flatpak/app/org.ferdium.Ferdium/x86_64/stable/fbca90383214fa94cf7721471902e3ec7b8222dbe7e532b71a9b607c445af2ae/export/share/applications/org.ferdium.Ferdium.desktop"
+  "/var/lib/flatpak/app/im.riot.Riot/x86_64/stable/9bd0c958912a8187b019b3a11260da2e6c241b92a6e570fd0efc8b2f53186310/export/share/applications/im.riot.Riot.desktop"
+)
+for path in ${paths[@]}; do
+  cp ${path} ~/.config/autostart/
+done
+chmod +x ~/.config/autostart/*.desktop
+
 ##############################
 ##                          ##
 ##   Remove Logos Section   ##
