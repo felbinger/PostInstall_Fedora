@@ -197,8 +197,6 @@ gsettings set org.gnome.shell.extensions.just-perfection weather false
 gsettings set org.gnome.shell.extensions.just-perfection window-menu-take-screenshot-button false
 gsettings set org.gnome.shell.extensions.just-perfection startup-status 0
 
-# TODO Extensions: Enable Built-In Extension Applications Menu
-
 gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 
