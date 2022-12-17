@@ -189,6 +189,7 @@ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
 gsettings set org.gnome.shell.extensions.trayIconsReloaded icon-padding-horizontal 0
 gsettings set org.gnome.shell.extensions.trayIconsReloaded icon-margin-horizontal  0
+gsettings set org.gnome.shell.extensions.trayIconsReloaded icons-limit 8
 
 gsettings set org.gnome.shell.extensions.just-perfection activities-button false
 gsettings set org.gnome.shell.extensions.just-perfection world-clock false
