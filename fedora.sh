@@ -114,7 +114,6 @@ sudo dnf install -y \
 )
 
 [[ ${DNF_PACKAGES[@]} =~ "brave-browser" ]] && (
-  sudo dnf install -y dnf-plugins-core
   sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
   sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 )
@@ -145,7 +144,9 @@ sudo rm /tmp/drawio.rpm
 sudo wget -q https://raw.githubusercontent.com/felbinger/scripts/master/genpw.sh -O /usr/local/bin/genpw
 sudo chmod +x /usr/local/bin/genpw
 
-# TODO install jetbrains-toolbox (idea, pycharm, clion)
+# start jetbrains-toolbox to install idea, pycharm and clion
+curl -s -L -o- $(curl -s "https://data.services.jetbrains.com/products?code=TBA"  | jq -r '.[0].releases | .[0].downloads.linux.link') | tar xzC /tmp
+/tmp/jetbrains-toolbox*/jetbrains-toolbox
 
 # change ps1
 echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" | sudo tee -a /{root,home/${USER}}/.bashrc &> /dev/null
