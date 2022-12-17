@@ -43,9 +43,10 @@ DNF_PACKAGES=(
   brave-browser                                        # using brave repo
   signal-desktop                                       # from dnf copr
 
-  #nemo-seahorse                                       # nemo seahorse integration (sign / encrypt)
+  nemo-seahorse                                        # nemo seahorse integration (sign / encrypt)
   gnome-tweaks
   gnome-extensions-app
+  nemo                                                 # install nemo, so we have an alternative to nautilus
 )
 FLATPAK_PACKAGES=(
   im.riot.Riot                                         # Element Client
@@ -166,5 +167,8 @@ echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" |
 
 # add your user to some groups for applications
 #usermod -aG vboxusers,dialout user
+
+# set nemo as default
+xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
 
 # install jetbrains-toolbox (idea, pycharm, clion)
