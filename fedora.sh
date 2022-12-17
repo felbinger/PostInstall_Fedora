@@ -152,7 +152,7 @@ echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" |
 
 # add your user to some groups for applications
 [[ ${DNF_PACKAGES[@]} =~ "VirtualBox" ]] && sudo usermod -aG vboxusers ${USER}
-sudo usermod -aG dialout nicof2000
+sudo usermod -aG dialout ${USER}
 
 ###############################################
 ##                                           ##
@@ -201,7 +201,7 @@ gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,m
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 
 # set background images for screensaver and desktop to static color (#150936)
-path="/home/nicof2000/Pictures/background.png"
+path="/home/${USER}/Pictures/background.png"
 convert -size 100x100 xc:#150936 ${path}
 gsettings set org.gnome.desktop.background picture-uri-dark "file://${path}"
 gsettings set org.gnome.desktop.background picture-uri "file://${path}"
