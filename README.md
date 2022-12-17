@@ -48,7 +48,3 @@ Press CTRL + L one time to make the URL bar editable.
 
 ### Text-Editor: xed
 ![Xed Preferences](./img/xed_preferences.png)
-
-
-### Other Settings
-* adjust shortcuts in GNOME Overview (Brave, Nemo)
