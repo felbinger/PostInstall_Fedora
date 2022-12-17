@@ -201,7 +201,7 @@ gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,m
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 
 # set background images for screensaver and desktop to static color (#150936)
-path="/home/${USER}/Pictures/background.png"
+path="~/Pictures/background.png"
 convert -size 100x100 xc:#150936 ${path}
 gsettings set org.gnome.desktop.background picture-uri-dark "file://${path}"
 gsettings set org.gnome.desktop.background picture-uri "file://${path}"
@@ -275,6 +275,9 @@ for path in ${paths[@]}; do
 done
 chmod +x ~/.config/autostart/*.desktop
 
+# download profile picture for the user
+curl -s -L -o ~/Pictures/profile.png https://avatars.githubusercontent.com/u/26925347
+
 ##############################
 ##                          ##
 ##   Remove Logos Section   ##
@@ -294,4 +297,6 @@ sudo dracut -f /boot/initramfs-$(uname -r).img
 ### CLEANUP
 rm -r /tmp/repos.d
 rm -r /tmp/jetbrains-toolbox*
+rm -r ~/Public
+rm -r ~/Templates
 sudo dnf remove -y nautilus gnome-text-editor
