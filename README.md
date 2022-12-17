@@ -1,27 +1,42 @@
-# Fedora 35 Installation Checklist
+# Fedora 37 Installation Checklist
 
 ## Pre Install
 Backup your data, don't forget the following:
 * SSH configuration and keys (`~/.ssh/`)
 * Remmina configurations (`~/.local/share/remmina`)
+* GPG Keys
 
 ## Installation
 ![Language Selection](./img/install_language.png)  
 ![Summary](./img/install_summary.png)  
 ![Keyboard Layout](./img/install_keyboard.png)  
 
-You can configure the storage automaticly, or using the "Advanced Custom" mode, using the blivet gui.  
-If you encrypt your data, make sure to check whether the correct keyboard layout has been selected before setting the passphrase for the disk encryption.  
-![Disk Setup](./img/install_disks.png)  
+![Disk Setup](./img/install_part1.png)  
+
+Select "Encrypt Data" and create the partitions automaticly with btrfs as filesystem. 
+![Disk Setup](./img/install_part2.png)  
+
+Make sure to change the btrfs volume names as described in the following two pictures to match ubuntu btrfs naming schemas (which is required for timeshift to work).
+![Disk Setup](./img/install_part3.png)  
+![Disk Setup](./img/install_part4.png)  
+
+> Warning: The us american keyboard layout is still active in live system!
+
+![Disk Setup](./img/install_part5.png)  
+![Disk Setup](./img/install_part6.png)  
 
 You can start the installation now:  
 ![Summary](./img/install_summary_finished.png)  
 
 Finally you can restart your computer.
 
-## Post Install
-Adjust the configuration section in the [`fedora.sh`](./fedora.sh) script and execute it. Afterwards logout and login again with Cinnamon as desktion environment (right bottom cornor -> cog icon). 
+On the first start you will be prompted with a dialog where you can create a user account, also you should enable the Third Party Repositories.
+![Third Party Repositories](./img/firststart_enable_third-party.png)
 
+## Post Install
+Adjust the configuration section in the [`fedora.sh`](./fedora.sh) script and execute it.
+
+### File Manager: nemo
 I personally like to change a few settings in the file explorer **Nemo (Edit/Preferences)**.  
 ![Nemo: Views](./img/nemo_views.png)
 
@@ -31,32 +46,5 @@ I personally like to change a few settings in the file explorer **Nemo (Edit/Pre
 
 Press CTRL + L one time to make the URL bar editable.
 
-Make sure your **Date and Time** settings work for you. By default the first day of the week is sunday and the date won't be displayed in the calendar applet.  
-![Settings: Date and Time](./img/settings_date_time.png)
-
-If you are on a notebook make sure to change the **Mouse and Touchpad** settings. (e.g. horiziontal or vertical scrolling)
-
-I like to have a clean desktop, so I only add the trash bin.
-![Settings: Desktop](./img/settings_desktop.png)
-
-I also like to see some system stats in my panel, so I always install the applet: CPU Temperatur Indicator
-Also I like to add QRedshift for manual blue light filtering.  
-![Settings: Applets](./img/settings_applets.png)  
-![Applets: QRedShift](./img/qredshift.png)
-
-As you probably noticed the system made some noice when logging in. I don't like those so I disable all system sounds.
-![Settings: Sound](./img/settings_sounds.png)
-
-After I added my printers, configured my preferred and startup applications.
-
-![Settings: Preferred Applications](./img/settings_preferred_applications.png)
-
+### Text-Editor: xed
 ![Xed Preferences](./img/xed_preferences.png)
-
-## TODO
-- SELinux Cinnamon adjustments
-  ```shell
-  ausearch -c 'gnome-session-c' --raw | audit2allow -M my-gnomesessionc
-  semodule -X 300 -i my-gnomesessionc.pp
-  ```
-- Install JetBrains Toolbox
