@@ -50,6 +50,7 @@ FLATPAK_PACKAGES=(
   im.riot.Riot                                         # Element Client
   com.spotify.Client
   org.ferdium.Ferdium
+  org.gtk.Gtk3theme.Adwaita-dark
 )
 
 ###################################
