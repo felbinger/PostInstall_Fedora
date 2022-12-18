@@ -201,8 +201,8 @@ gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,m
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 
 # set background images for screensaver and desktop to static color (#150936)
-path="~/Pictures/background.png"
-convert -size 100x100 xc:#150936 ${path}
+path=~/Pictures/background.png
+convert -size 100x100 'xc:#150936' ${path}
 gsettings set org.gnome.desktop.background picture-uri-dark "file://${path}"
 gsettings set org.gnome.desktop.background picture-uri "file://${path}"
 gsettings set org.gnome.desktop.screensaver picture-uri "file://${path}"
