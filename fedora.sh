@@ -100,7 +100,7 @@ sudo dnf install -y \
 ## check if packages in configuration, which require pre install commands ##
 [[ ${DNF_PACKAGES[@]} =~ "code" ]] && (
   sudo mv /tmp/repos.d/vscode.repo /etc/yum.repos.d/vscode.repo
-  sudo rpm --import https://packages.microsoft.com/keys/microsoft.as
+  sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 )
 
 [[ ${DNF_PACKAGES[@]} =~ "anydesk" ]] && (
