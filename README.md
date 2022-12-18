@@ -48,3 +48,6 @@ Press CTRL + L one time to make the URL bar editable.
 
 ### Text-Editor: xed
 ![Xed Preferences](./img/xed_preferences.png)
+
+### Other
+* Adjust Startup Applications (--start-in-tray / --hidden flags) to start in tray
