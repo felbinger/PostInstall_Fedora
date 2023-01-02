@@ -201,6 +201,7 @@ gsettings set org.gnome.shell.extensions.just-perfection startup-status 0
 gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.desktop.interface enable-hot-corners false
+gsettings set org.gnome.shell.app-switcher current-workspace-only true
 
 # set background images for screensaver and desktop to static color (#150936)
 path=~/Pictures/background.png
