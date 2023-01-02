@@ -4,7 +4,8 @@
 Backup your data, don't forget the following:
 * SSH configuration and keys (`~/.ssh/`)
 * Remmina configurations (`~/.local/share/remmina`)
-* GPG Keys
+* GPG Keys (`~/.gnupg`)
+* Wireguard Configurations (`/etc/wireguard/*.conf`)
 
 ## Installation
 ![Language Selection](./img/install_language.png)  
