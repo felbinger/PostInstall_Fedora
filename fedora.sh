@@ -34,6 +34,12 @@ DNF_PACKAGES=(
   kubernetes-client
   ansible
   
+  # yubikey utilities
+  yubioath-desktop
+  yubikey-personalization-gui
+  yubikey-manager-qt
+  yubico-piv-tool
+  
   code                                                 # visual studio code using microsoft repo
   anydesk                                              # using anydesk (rhel) repo
   teamviewer                                           # using teamviewer repo
