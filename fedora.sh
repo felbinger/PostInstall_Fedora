@@ -35,7 +35,6 @@ DNF_PACKAGES=(
   ansible
   
   # yubikey utilities
-  yubioath-desktop
   yubikey-personalization-gui
   yubikey-manager-qt
   yubico-piv-tool
@@ -48,6 +47,7 @@ DNF_PACKAGES=(
 
   gnome-tweaks
   gnome-extensions-app
+  file-roller
   nemo                                                 # install nemo, so we have an alternative to nautilus
   nemo-seahorse                                        # nemo seahorse integration (sign / encrypt)
   xed
@@ -146,6 +146,10 @@ which ansible &> /dev/null && ansible-galaxy collection install community.genera
 curl -s https://api.github.com/repos/jgraph/drawio-desktop/releases/latest | grep browser_download_url | grep '\.rpm' | cut -d '"' -f 4 | wget -O /tmp/drawio.rpm -i -
 sudo yum install -y /tmp/drawio.rpm
 sudo rm /tmp/drawio.rpm
+
+# TODO yubioath see https://discussion.fedoraproject.org/t/f38-yubioath-desktop-will-no-longer-be-available-in-fedora-repository/45921
+#tar -xvf yubico-authenticator-*-linux.tar.gz -C /opt/
+#/opt/yubioath-desktop-*-linux/desktop_integration.sh -i
 
 # add password generator script
 sudo wget -q https://raw.githubusercontent.com/felbinger/scripts/master/genpw.sh -O /usr/local/bin/genpw
