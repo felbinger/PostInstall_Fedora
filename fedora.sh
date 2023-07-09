@@ -177,8 +177,9 @@ xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
 
 # install gnome shell extensions
 extensions=(
-  "https://extensions.gnome.org/extension/2890/tray-icons-reloaded/"
+  # "https://extensions.gnome.org/extension/2890/tray-icons-reloaded/"
   "https://extensions.gnome.org/extension/3843/just-perfection/"
+  "https://extensions.gnome.org/extension/615/appindicator-support/"
 )
 for extension in "${extensions[@]}"; do
   extensionId=$(curl -s $extension | grep -oP 'data-uuid="\K[^"]+')
@@ -198,9 +199,9 @@ find ~/.local/share/gnome-shell/extensions/ -type f -name '*.gschema.xml' \
   -exec sudo cp {} /usr/share/glib-2.0/schemas/ \;
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
-gsettings set org.gnome.shell.extensions.trayIconsReloaded icon-padding-horizontal 0
-gsettings set org.gnome.shell.extensions.trayIconsReloaded icon-margin-horizontal  0
-gsettings set org.gnome.shell.extensions.trayIconsReloaded icons-limit 8
+# gsettings set org.gnome.shell.extensions.trayIconsReloaded icon-padding-horizontal 0
+# gsettings set org.gnome.shell.extensions.trayIconsReloaded icon-margin-horizontal  0
+# gsettings set org.gnome.shell.extensions.trayIconsReloaded icons-limit 8
 
 gsettings set org.gnome.shell.extensions.just-perfection activities-button false
 gsettings set org.gnome.shell.extensions.just-perfection world-clock false
@@ -290,6 +291,9 @@ chmod +x ~/.config/autostart/*.desktop
 
 # download profile picture for the user
 curl -s -L -o ~/Pictures/profile.png https://avatars.githubusercontent.com/u/26925347
+
+# start gnome with xorg instead of wayland
+# TODO: sed -i 's/Session=.*/Session=gnome-xorg/' /var/lib/AccountsService/users/${USER}
 
 ##############################
 ##                          ##
