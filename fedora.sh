@@ -292,8 +292,8 @@ chmod +x ~/.config/autostart/*.desktop
 # download profile picture for the user
 curl -s -L -o ~/Pictures/profile.png https://avatars.githubusercontent.com/u/26925347
 
-# start gnome with xorg instead of wayland
-# TODO: sed -i 's/Session=.*/Session=gnome-xorg/' /var/lib/AccountsService/users/${USER}
+# start "gnome on xorg" instead of wayland
+sudo sed -i 's/Session=gnome/Session=gnome-xorg/' /var/lib/AccountsService/users/${USER}
 
 ##############################
 ##                          ##
