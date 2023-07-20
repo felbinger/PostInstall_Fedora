@@ -222,7 +222,8 @@ gsettings set org.gnome.desktop.background picture-uri "file://${path}"
 gsettings set org.gnome.desktop.screensaver picture-uri "file://${path}"
 
 # adjust terminator configuration
-gsettings set org.gnome.desktop.default-applications.terminal exec 'terminator'
+gsettings set org.gnome.desktop.default-applications.terminal exec terminator
+gsettings set org.cinnamon.desktop.default-applications.terminal exec terminator  # required for nemo (right click -> open terminal) to work properly
 gsettings set org.gnome.desktop.default-applications.terminal exec-arg ''
 mkdir -p ~/.config/terminator
 cat <<_EOF >> ~/.config/terminator/config
