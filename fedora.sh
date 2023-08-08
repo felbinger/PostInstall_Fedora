@@ -47,7 +47,7 @@ DNF_PACKAGES=(
 
   gnome-tweaks
   gnome-extensions-app
-  file-roller
+  file-roller nemo-fileroller
   nemo                                                 # install nemo, so we have an alternative to nautilus
   nemo-seahorse                                        # nemo seahorse integration (sign / encrypt)
   xed
