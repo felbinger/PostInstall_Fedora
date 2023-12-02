@@ -44,6 +44,7 @@ DNF_PACKAGES=(
   teamviewer                                           # using teamviewer repo
   brave-browser                                        # using brave repo
   signal-desktop                                       # from dnf copr
+  android-tools
 
   gnome-tweaks
   gnome-extensions-app
